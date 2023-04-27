@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 class Materials {
   final String name;
@@ -42,7 +44,7 @@ child: Padding(
             Text('\$${item.price.toStringAsFixed(2)}'),
 
 
-          
+
            ], 
           ),
      ),
@@ -59,10 +61,6 @@ child: Padding(
    ),
   
 );
-
-  
-
-
   }
 }
 
@@ -78,24 +76,121 @@ class ItemListWidget extends StatelessWidget{
   }
 
 }
+class DrawerWidget extends StatelessWidget{
+  const DrawerWidget({Key? key}) : super(key: key);
+  
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget> [
+          DrawerHeader(
+            decoration:BoxDecoration(
+              color: Colors.blue
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: CircleAvatar(
+                    radius: 40,
+                    backgroundImage: AssetImage(
+                      'images/Snapchat-18711034.jpg'
+                      ),
+                      
+                    ),
+                ),
+                  SizedBox(height: 18.0,
+                  ),
+                  Center(
+                    child: Text(
+                      'Eleni Beyene',
+                    style: TextStyle(
+                      color: Colors.white,
+                       fontSize: 18.0,
+                    ),
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      'elenibeyene5@gmail.com',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14.0,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: ListTile(
+                leading: Icon(Icons.dashboard),
+                title: Text('Dashbord'),
+                onTap: (){
+                  //update ui
+                },
+              ),
+            ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: ListTile(
+                      leading: Icon(Icons.data_object),
+                                title: Text('Items'),
+                                onTap: (){
+                                  //update ui
+                                },
+                              ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: ListTile(
+                      leading: Icon(Icons.settings),
+                                title: Text('Setting'),
+                                onTap: (){
+                                  //update ui
+                                },
+                              ),
+                  ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: ListTile(
+                  leading: Icon(Icons.person),
+                title: Text('Account'),
+                onTap: (){
+                  //update ui
+                },
+                           ),
+              ),
+            ],
+           ),
+       ); 
+  }
+}
 
 void main() {
   
   runApp(MaterialApp(
+
+    
     title: '{ }   List of Items',
     debugShowCheckedModeBanner: false,
     home: Scaffold(
       appBar: AppBar(
-        title: Text('{ }   List of Items'),
+        title: Row(
+          children: [
+            Icon(Icons.data_object),
+            Text('  List of Items'),
+          ],
+        ),
         actions:const <Widget> [
-          
           Icon(Icons.more_vert),
-
         ],
       ),
-     
+      drawer: DrawerWidget(),
       body: ItemListWidget(),
     ),
-  )
-  );
+  ));
 }
